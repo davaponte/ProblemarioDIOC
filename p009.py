@@ -19,10 +19,10 @@
 #  MA 02110-1301, USA.
 #  
 
-# ~ Problema N.8:
-# ~ Diseñe un programa que dado un punto en el plano por sus coordenadas (x,y),
-# ~ determinar en qué cuadrante se encuentra indicándolo con un mensaje al
-# ~ usuario.
+# ~ Problema N.9:
+# ~ Dados tres puntos en el plano por sus coordenadas (x, y), realice un programa
+# ~ que indique si los mismos se encuentran sobre una misma recta (si son Puntos
+# ~ Colineales).
 
 from sys import exit
 
@@ -36,20 +36,22 @@ def InputValue(Msg):
         print('Error Capa 8. Debes ingresar un número, cacho cabrón!')
         exit(1)
 
-x = InputValue('Ingrese x: ')
-y = InputValue('Ingrese y: ')
+x, y = [], []
+for c in range(3):
+    x.append(InputValue('Ingrese x' + str(c + 1) + ': '))
+    y.append(InputValue('Ingrese y' + str(c + 1) + ': '))
 
-if (x == 0) and (y == 0):
-    print('Punto en el origen.')
+dyA = y[1] - y[0] 
+dxA = x[1] - x[0] 
+dyB = y[2] - y[1] 
+dxB = x[2] - x[1] 
+
+if (dxA == 0) and (dxB == 0):
+    print('Los puntos son colineales.')
 else:
-    if (x > 0):
-        if (y > 0):
-             C = 1
-        else:
-            C = 4
+    if (dyA / dxA == dyB / dxB):
+        print('Los puntos son colineales.')
     else:
-        if (y > 0):
-             C = 2
-        else:
-            C = 3
-    print('Punto en el cuadrante #: {}'.format(C))
+        print('Los puntos NO son colineales.')
+      
+
